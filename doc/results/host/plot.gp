@@ -41,8 +41,11 @@ set ylabel 'requests/sec'
 set yrange [0:*]
 set ytics nomirror
 plot \
-        'apache-pinned/ApacheMon.dat' index 0 title 'Pinned' with lp linecolor 1, \
-        'apache-unpinned/ApacheMon.dat' index 0 title 'Unpinned' with lp linecolor 2
+        'apache-pinned/ApacheMon.dat' index 0 title 'Host' with lp linecolor 1, \
+        '../vm/no-mem-bind/no-cpu-bind/apache/ApacheMon.dat' index 0 title 'VM-NM-NC' with lp linecolor 2, \
+        '../vm/no-mem-bind/cpu-bind/apache/ApacheMon.dat' index 0 title 'VM-NM-C' with lp linecolor 3, \
+        '../vm/mem-bind/no-cpu-bind/apache/ApacheMon.dat' index 0 title 'VM-M-NC' with lp linecolor 4, \
+        '../vm/mem-bind/cpu-bind/apache/ApacheMon.dat' index 0 title 'VM-M-C' with lp linecolor 5, \
 
 
 set title 'Exim'
@@ -51,8 +54,42 @@ set ylabel 'messages/sec'
 set yrange [0:*]
 set ytics nomirror
 plot \
-        'exim-pinned/EximLoad.dat' index 0 title 'Pinned' with lp linecolor 1, \
-        'exim-unpinned/EximLoad.dat' index 0 title 'Unpinned' with lp linecolor 2
+        'exim-pinned/EximLoad.dat' index 0 title 'Host-P' with lp linecolor 1, \
+        'exim-unpinned/EximLoad.dat' index 0 title 'Host-NP' with lp linecolor 2,\
+        '../vm/no-mem-bind/no-cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-P-NM-NC' with lp linecolor 3, \
+        '../vm/no-mem-bind/no-cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-NP-NM-NC' with lp linecolor 4,\
+        '../vm/no-mem-bind/cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-P-NM-C' with lp linecolor 5, \
+        '../vm/no-mem-bind/cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-NP-NM-C' with lp linecolor 6,\
+        '../vm/mem-bind/no-cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-P-M-NC' with lp linecolor 7, \
+        '../vm/mem-bind/no-cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-NP-M-NC' with lp linecolor 8,\
+        '../vm/mem-bind/cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-P-M-C' with lp linecolor 9, \
+        '../vm/mem-bind/cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-NP-M-C' with lp linecolor 10,\
+
+
+set title 'Pinned Exim'
+set xlabel 'cores'
+set ylabel 'messages/sec'
+set yrange [0:*]
+set ytics nomirror
+plot \
+        'exim-pinned/EximLoad.dat' index 0 title 'Host-P' with lp linecolor 1, \
+        '../vm/no-mem-bind/no-cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-NM-NC' with lp linecolor 2, \
+        '../vm/no-mem-bind/cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-NM-C' with lp linecolor 3, \
+        '../vm/mem-bind/no-cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-M-NC' with lp linecolor 4, \
+        '../vm/mem-bind/cpu-bind/exim-pinned/EximLoad.dat' index 0 title 'VM-M-C' with lp linecolor 5, \
+
+
+set title 'Unpinned Exim'
+set xlabel 'cores'
+set ylabel 'messages/sec'
+set yrange [0:*]
+set ytics nomirror
+plot \
+        'exim-unpinned/EximLoad.dat' index 0 title 'Host-NP' with lp linecolor 1,\
+        '../vm/no-mem-bind/no-cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-NM-NC' with lp linecolor 2,\
+        '../vm/no-mem-bind/cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-NM-C' with lp linecolor 3,\
+        '../vm/mem-bind/no-cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-M-NC' with lp linecolor 4,\
+        '../vm/mem-bind/cpu-bind/exim-unpinned/EximLoad.dat' index 0 title 'VM-M-C' with lp linecolor 5,\
 
 
 set title 'Gmake'
@@ -61,8 +98,65 @@ set ylabel 'builds/hour'
 set yrange [0:*]
 set ytics nomirror
 plot \
-        'gmake/GmakeLoad.dat' index 0 title '' with lp linecolor 1,\
+        'gmake/GmakeLoad.dat' index 0 title 'Host' with lp linecolor 1,\
+        '../vm/no-mem-bind/no-cpu-bind/gmake/GmakeLoad.dat' index 0 title 'VM-NM-NC' with lp linecolor 2,\
+        '../vm/no-mem-bind/cpu-bind/gmake/GmakeLoad.dat' index 0 title 'VM-NM-C' with lp linecolor 3,\
+        '../vm/mem-bind/no-cpu-bind/gmake/GmakeLoad.dat' index 0 title 'VM-M-NC' with lp linecolor 4,\
+        '../vm/mem-bind/cpu-bind/gmake/GmakeLoad.dat' index 0 title 'VM-M-C' with lp linecolor 5,\
 
+
+set title 'Psearchy'
+set xlabel 'cores'
+set ylabel 'jobs/hour'
+set yrange [0:*]
+set ytics nomirror
+plot \
+        'psearchy-pinned/PsearchyLoad.dat' index 0 title 'Pinned' with lp linecolor 1,\
+        'psearchy-unpinned/PsearchyLoad.dat' index 0 title 'Unpinned' with lp linecolor 2, \
+        '../vm/no-mem-bind/no-cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-NM-NC' with lp linecolor 3, \
+        '../vm/no-mem-bind/no-cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-NM-NC' with lp linecolor 4,\
+        '../vm/no-mem-bind/cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-NM-C' with lp linecolor 5, \
+        '../vm/no-mem-bind/cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-NM-C' with lp linecolor 6,\
+        '../vm/mem-bind/no-cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-M-NC' with lp linecolor 7, \
+        '../vm/mem-bind/no-cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-M-NC' with lp linecolor 8,\
+        '../vm/mem-bind/cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-M-C' with lp linecolor 9, \
+        '../vm/mem-bind/cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-M-C' with lp linecolor 10,\
+
+
+set title 'Unpinned Psearchy'
+set xlabel 'cores'
+set ylabel 'jobs/hour'
+set yrange [0:*]
+set ytics nomirror
+plot \
+        'psearchy-unpinned/PsearchyLoad.dat' index 0 title 'Unpinned' with lp linecolor 1, \
+        '../vm/no-mem-bind/no-cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-NM-NC' with lp linecolor 2,\
+        '../vm/no-mem-bind/cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-NM-C' with lp linecolor 3,\
+        '../vm/mem-bind/no-cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-M-NC' with lp linecolor 4,\
+        '../vm/mem-bind/cpu-bind/psearchy-unpinned/PsearchyLoad.dat' index 0 title 'VM-NP-M-C' with lp linecolor 5,\
+
+
+set title 'Pinned Psearchy'
+set xlabel 'cores'
+set ylabel 'jobs/hour'
+set yrange [0:*]
+set ytics nomirror
+plot \
+        'psearchy-pinned/PsearchyLoad.dat' index 0 title 'Pinned' with lp linecolor 1,\
+        '../vm/no-mem-bind/no-cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-NM-NC' with lp linecolor 3, \
+        '../vm/no-mem-bind/cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-NM-C' with lp linecolor 5, \
+        '../vm/mem-bind/no-cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-M-NC' with lp linecolor 7, \
+        '../vm/mem-bind/cpu-bind/psearchy-pinned/PsearchyLoad.dat' index 0 title 'VM-P-M-C' with lp linecolor 9, \
+
+
+# set title 'Pbzip'
+# set xlabel 'cores'
+# set ylabel 'jobs/hour'
+# set yrange [0:*]
+# set ytics nomirror
+# plot \
+#         'nested/pbzip/pbzip.dat' index 0 title 'nVM' with lp linecolor 1, \
+#         'vm/pbzip/pbzip.dat' index 0 title 'VM' with lp linecolor 2
 
 # set title 'Metis'
 # set xlabel 'cores'
@@ -74,21 +168,3 @@ plot \
 #         'vm/metis/MetisLoad.dat' index 0 title 'VM' with lp linecolor 2
 
 
-set title 'Psearchy'
-set xlabel 'cores'
-set ylabel 'jobs/hour'
-set yrange [0:*]
-set ytics nomirror
-plot \
-        'psearchy-pinned/PsearchyLoad.dat' index 0 title 'Pinned' with lp linecolor 1,\
-        'psearchy-unpinned/PsearchyLoad.dat' index 0 title 'Unpinned' with lp linecolor 2
-
-
-# set title 'Pbzip'
-# set xlabel 'cores'
-# set ylabel 'jobs/hour'
-# set yrange [0:*]
-# set ytics nomirror
-# plot \
-#         'nested/pbzip/pbzip.dat' index 0 title 'nVM' with lp linecolor 1, \
-#         'vm/pbzip/pbzip.dat' index 0 title 'VM' with lp linecolor 2
